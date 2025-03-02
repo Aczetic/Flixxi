@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+@font-face {
+  font-family: "futura";
+  src: url("./fonts/Futura.ttf");
+}
+@font-face {
+  font-family: "futura-bold";
+  src: url("/fonts/Futura_Bold.ttf");
+}
+html,
+body {
+  width: 100%;
+  background-color: #041c32;
+  color: azure;
+  font-family: "futura";
+}
+
+#header {
+  width: 100%;
+  background-color: black;
+  padding: 2rem 2rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+#header-main {
+  width: 100%;
+  max-width: 120rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+#logo {
+  font-size: 2rem;
+  font-weight: 900;
+  cursor: pointer;
+  width: fit-content;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#nav {
+  font-size: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+#nav div:hover {
+  color: #f8c681;
+}
+
+#nav #curr {
+  color: #e9a23f;
+  font-weight: bolder;
+}
+
+#body {
+  width: 100%;
+  max-width: 120rem;
+  margin: auto auto;
+  box-sizing: border-box;
+  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+#search-box {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#search-box input {
+  padding: 0 1rem;
+  width: 20rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+}
+
+#search-box .icon {
+  background-color: #064663;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.loader {
+  display: none;
+  background-image: url("/img/loader.gif");
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-blend-mode: color-burn;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10rem;
+  position: absolute;
+  top: 0;
+}
+.show {
+  display: flex;
+}
+
+.alert {
+  width: 20rem;
+  padding: 1rem 2rem;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin: auto auto;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  background-color: #064663;
+  margin-top: 3rem;
+}
+.error {
+  background-color: red;
+  display: flex;
+}
+.success {
+  display: flex;
+  background-color: green;
+}
