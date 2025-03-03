@@ -13,11 +13,18 @@
 html,
 body {
   width: 100%;
+  height: fit-content;
+  min-height: 100vh;
   background-color: #041c32;
   color: azure;
   font-family: "futura";
+  position: relative;
 }
-
+#heading {
+  width: 100%;
+  text-align: center;
+  font-size: 2vw;
+}
 #header {
   width: 100%;
   background-color: black;
@@ -67,12 +74,113 @@ a {
 #body {
   width: 100%;
   max-width: 120rem;
+  height: calc(100vh - 10rem);
   margin: auto auto;
+  padding: 0 2rem;
   box-sizing: border-box;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 3rem;
   margin-top: 3rem;
+}
+#unit {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#footer {
+  padding: 2rem;
+}
+#cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+}
+.card {
+  width: 15rem;
+  padding: 0.6rem;
+  background-color: #103354;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.card:hover {
+  box-shadow: 0 0 10px 3px #88cae9;
+}
+
+#img {
+  width: 100%;
+  min-height: 20rem;
+  background-color: #041c32;
+  position: relative;
+  background-size: cover;
+  background-image: url("https://image.tmdb.org/t/p/w500/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg");
+}
+
+.type {
+  width: fit-content;
+  padding: 0.2rem 0.4rem;
+  background-color: #f8c681;
+  color: #041c32;
+  border-radius: 0.2rem;
+  display: flex;
+  gap: 0.5rem;
+  position: absolute;
+  bottom: 0;
+  margin: 0.3rem;
+  font-size: 1rem;
+}
+
+#info {
+  width: 100%;
+  height: 30%;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 0.3rem;
+}
+#title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: initial;
+}
+#rating {
+  position: absolute;
+  right: 0;
+  padding: 0.3rem 0.4rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  gap: 0.2rem;
+  margin: 0.5rem;
+  background-color: #152f47aa;
+}
+.material-icons {
+  font-size: 1rem !important;
+  color: #f4b052;
+}
+#genres {
+  display: flex;
+  font-size: 1rem;
+  gap: 0.3rem;
+}
+.genre {
+  padding: 0.2rem 0.3rem;
+  background-color: #39648c;
+  border-radius: 0.2rem;
 }
 #search-box {
   display: flex;
@@ -96,7 +204,7 @@ a {
 }
 
 .loader {
-  display: none;
+  display: flex;
   background-image: url("/img/loader.gif");
   width: 100%;
   height: 100vh;
@@ -109,9 +217,6 @@ a {
   padding-top: 10rem;
   position: absolute;
   top: 0;
-}
-.show {
-  display: flex;
 }
 
 .alert {
@@ -133,4 +238,130 @@ a {
 .success {
   display: flex;
   background-color: green;
+}
+
+@media (max-width: 768px) {
+  #body {
+    width: 100%;
+    max-width: 120rem;
+    min-height: calc(100vh - 10rem);
+    height: fit-content;
+    margin: auto auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  #heading {
+    width: 100%;
+    text-align: center;
+    font-size: 5vw;
+  }
+
+  #search-box input {
+    padding: 0 1rem;
+    width: 20rem;
+    font-size: 0.95rem;
+    border-radius: 0.5rem;
+  }
+  #cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 12rem 12rem;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .card {
+    width: 11rem;
+    height: fit-content;
+    padding: 0.5rem;
+    background-color: #103354;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  #img {
+    width: 100%;
+    min-height: 12rem;
+    background-color: #041c32;
+    position: relative;
+    background-size: cover;
+  }
+
+  .type {
+    font-size: 0.8rem;
+    width: fit-content;
+    padding: 0.1rem 0.3rem;
+    background-color: #f8c681;
+    color: #041c32;
+    border-radius: 0.2rem;
+    display: flex;
+    gap: 0.5rem;
+    position: absolute;
+    bottom: 0;
+    margin: 0.3rem;
+  }
+
+  #info {
+    font-size: 0.8rem;
+    width: 100%;
+    min-height: 6rem;
+  }
+  #title {
+    padding: 0.3rem 0;
+    font-size: 1rem;
+    line-height: 0.9rem;
+    font-weight: 500;
+  }
+  #rating {
+    position: absolute;
+    right: 0;
+    padding: 0.3rem 0.4rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    gap: 0.2rem;
+    margin: 0.5rem;
+    background-color: #20629f99;
+  }
+  .material-icons {
+    font-size: 1rem !important;
+    color: #f4b052;
+  }
+  #genres {
+    display: flex;
+    font-size: 0.8rem;
+    gap: 0.3rem;
+  }
+  .genre {
+    padding: 0.2rem 0.3rem;
+    background-color: #39648c;
+    border-radius: 0.2rem;
+  }
+  .alert {
+    width: 20rem;
+    padding: 0.6rem 1rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: #064663;
+    margin-top: 3rem;
+  }
+  .error {
+    background-color: red;
+    display: flex;
+  }
+  .success {
+    display: flex;
+    background-color: green;
+  }
 }
