@@ -31,15 +31,26 @@
 
     <div class="alert">This is an alert box</div>
     <div id="body">
-      <div id="search-box">
-        <input
-          id="search-term"
-          type="text"
-          placeholder="Enter the name of the show or movie"
-        />
-        <span class="material-symbols-outlined icon"> search </span>
-      </div>
-      <div id="heading">Popular Movies</div>
+      <form id="search-box">
+        <div id="types">
+          <label for="optmov"
+            >Movie<input type="radio" name="type" value="movie" id="optmov"
+          /></label>
+          <label for="opttv"
+            >TV<input type="radio" name="type" value="TV" id="opttv"
+          /></label>
+        </div>
+        <div id="search-input">
+          <input
+            name="query"
+            id="search-term"
+            type="text"
+            placeholder="Enter the name of the show or movie"
+          />
+          <span class="material-symbols-outlined icon submit"> search </span>
+        </div>
+      </form>
+      <div id="heading">POPULAR</div>
 
       <div id="unit">
         <div id="cards"></div>
@@ -48,5 +59,6 @@
     </div>
     <div class="loader">Loading</div>
     <script type="module" src="/index.js"></script>
+    <script type="module" src="/search.js"></script>
   </body>
 </html>
