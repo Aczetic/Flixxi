@@ -31,4 +31,14 @@ async function getGenres(ids, what) {
   return ids.map((id) => genres.filter((genre) => genre.id === id)[0]["name"]);
 }
 
-export { showLoader, removeLoader, options, getGenres };
+function search(e) {
+  e.preventDefault();
+  const formData = new FormData(document.querySelector("form"));
+  const type = formData.get("type");
+  const query = formData.get("query");
+  window.location.href = `/search.html?type=${type || "multi"}&query=${query}`;
+}
+
+
+
+export { showLoader, removeLoader, options, getGenres, search };

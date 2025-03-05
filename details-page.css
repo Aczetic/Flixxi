@@ -1,0 +1,257 @@
+#background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+#background #img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center -2rem;
+}
+
+#background #gradient {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: rgb(4, 28, 50);
+  background: linear-gradient(
+      90deg,
+      rgba(4, 28, 50, 1) 0%,
+      rgba(255, 255, 255, 0) 51%,
+      rgba(4, 28, 50, 1) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(4, 28, 50, 1) 0%,
+      rgba(255, 255, 255, 0) 51%,
+      rgba(4, 28, 50, 1) 90%
+    );
+}
+#body {
+  width: 80%;
+  max-width: 120rem;
+  min-height: calc(100vh - 3rem);
+  height: fit-content;
+  margin: auto auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 0;
+}
+#details-body-mobile {
+  display: none;
+}
+#details-body {
+  width: 100%;
+  max-width: 90rem;
+  height: fit-content;
+  margin-bottom: 2rem;
+  display: flex;
+  margin-top: 5rem;
+  position: relative;
+}
+#info-body {
+  width: 100%;
+  min-height: calc(100vh - 105px - 11rem);
+  background: rgb(4, 28, 50, 0.5);
+  backdrop-filter: blur(1rem);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2rem;
+}
+#poster {
+  background-image: url("https://image.tmdb.org/t/p/w500/sc1abgWNXc29wSBaerrjGBih06l.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 15rem;
+  height: 20rem;
+  align-self: flex-start;
+  z-index: 1;
+}
+#about {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+#title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+#details {
+  width: 100%;
+  height: fit-content;
+  box-sizing: border-box;
+  padding: 2rem 1rem;
+  background: #10335499;
+  display: flex;
+  font-size: 1.2rem;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+#overview {
+  padding: 0 1rem;
+  font-size: 1.3rem;
+}
+#short-info {
+  width: fit-content;
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  border: 2px solid white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+.short-info-metrics {
+  display: flex;
+  align-items: center;
+  padding: 0.2rem;
+  gap: 0.2rem;
+}
+#footer {
+  display: flex;
+  padding: 0;
+  align-items: center;
+}
+.love {
+  color: red;
+}
+
+@media (max-width: 768px) {
+  #background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  #background #img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url("https://image.tmdb.org/t/p/w1920/sc1abgWNXc29wSBaerrjGBih06l.jpg");
+    background-repeat: no-repeat;
+    background-position: center -2rem;
+  }
+
+  #background #gradient {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: rgb(4, 28, 50);
+    background: linear-gradient(
+        90deg,
+        rgba(4, 28, 50, 1) 0%,
+        rgba(255, 255, 255, 0) 51%,
+        rgba(4, 28, 50, 1) 100%
+      ),
+      linear-gradient(
+        0deg,
+        rgba(4, 28, 50, 1) 0%,
+        rgba(255, 255, 255, 0) 51%,
+        rgba(4, 28, 50, 1) 90%
+      );
+  }
+  #body {
+    width: 100%;
+    max-width: 120rem;
+    min-height: calc(100vh - 3rem);
+    height: fit-content;
+    margin: auto auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 0;
+  }
+  #details-body-mobile {
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 2rem;
+    display: block;
+    position: relative;
+  }
+  #details-body {
+    display: none;
+  }
+  #info-body {
+    width: 100%;
+    height: 100%;
+    background: rgb(4, 28, 50, 0.5);
+    backdrop-filter: blur(1rem);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+  }
+  #poster {
+    background-image: url("https://image.tmdb.org/t/p/w500/sc1abgWNXc29wSBaerrjGBih06l.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 10rem;
+    height: 15rem;
+    margin-top: 3rem;
+    align-self: initial;
+  }
+  #about {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  #title {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  #details {
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    padding: 2rem 1rem;
+    background: #10335499;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+  #overview {
+    padding: 0 1rem;
+    font-size: 1rem;
+  }
+  #short-info {
+    display: flex;
+    gap: 0.2rem;
+    align-items: center;
+    border: 2px solid white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+  .short-info-metrics {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem;
+    gap: 0.2rem;
+  }
+  #footer {
+    display: flex;
+    padding: 0;
+    align-items: center;
+  }
+  .love {
+    color: red;
+  }
+}

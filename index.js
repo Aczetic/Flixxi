@@ -1,4 +1,10 @@
-import { showLoader, removeLoader, options, getGenres } from "./utils.js";
+import {
+  showLoader,
+  removeLoader,
+  options,
+  getGenres,
+  search,
+} from "./utils.js";
 
 async function getPopular(what) {
   const url = {
@@ -58,6 +64,7 @@ async function getPopular(what) {
         document.querySelector("#cards").appendChild(card);
       })
     )
+    .catch((e) => console.log(e))
     .finally(removeLoader);
 }
 const location = window.location.pathname;
@@ -68,3 +75,7 @@ const what =
     ? "movie"
     : "tv";
 window.addEventListener("DOMContentLoaded", () => getPopular(what));
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelector("form").addEventListener("submit", search);
+  document.querySelector(".submit").addEventListener("click", search);
+});
