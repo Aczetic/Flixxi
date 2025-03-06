@@ -95,6 +95,25 @@ a {
   flex-direction: column;
   justify-content: space-between;
 }
+
+#pages {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+#active-page {
+  color: #88cae9;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
 #footer {
   padding: 1rem;
   text-align: center;

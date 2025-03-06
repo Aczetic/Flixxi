@@ -7,7 +7,7 @@ import {
   notify,
 } from "./utils.js";
 
-async function constructCards(results, what, query) {
+async function constructCards(results, what, query, pageCount, currentPage) {
   console.log(results);
   results.forEach(async (item) => {
     if (item.media_type === "person") return;
@@ -42,7 +42,7 @@ async function constructCards(results, what, query) {
        <div id="lang">Language: ${item.original_language.toUpperCase()}</div>
 
        <div id="release">Release: ${
-         item.release_date || item.first_air_date
+         item.release_date || item.first_air_date || "Unknown"
        }</div>
        <div id="genres">
          ${genres
@@ -57,6 +57,27 @@ async function constructCards(results, what, query) {
 
     document.querySelector("#cards").appendChild(card);
   });
+  const pages = document.createElement("div");
+  pages.setAttribute("id", "pages");
+  const pageArr = new Array(parseInt(pageCount)).fill(0).slice(0, 10);
+
+  pageArr.map((page, index) => {
+    const pageel = document.createElement("div");
+    if (currentPage == index + 1) {
+      pageel.setAttribute("id", "active-page");
+    }
+    pageel.innerText = index + 1;
+    pageel.addEventListener("click", () => {
+      window.location.href = `/search.html?type=${
+        what === "all" ? "multi" : what
+      }&query=${query}&page=${index + 1}`;
+    }); //from here
+    pages.appendChild(pageel);
+  });
+  document
+    .querySelector("#unit")
+    .insertBefore(pages, document.querySelector("#footer"));
+
   removeLoader();
 }
 
@@ -64,8 +85,9 @@ async function search() {
   const searchParams = new URLSearchParams(window.location.search);
   const query = searchParams.get("query");
   const type = searchParams.get("type");
+  const currentPage = searchParams.get("page") || "1";
 
-  const url = `https://api.themoviedb.org/3/search/${type}?query=${query}&language=en-US&adult=true`;
+  const url = `https://api.themoviedb.org/3/search/${type}?query=${query}&language=en-US&page=${currentPage}`;
   console.log(url);
   if (type != "multi")
     document
@@ -82,7 +104,9 @@ async function search() {
         constructCards(
           searchResult.results,
           type == "multi" ? "all" : type,
-          query
+          query,
+          searchResult.total_pages,
+          currentPage
         );
     })
     .catch((e) => notify(e.message, "error"));

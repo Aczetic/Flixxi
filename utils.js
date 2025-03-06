@@ -45,13 +45,15 @@ function search(e) {
   const formData = new FormData(document.querySelector("form"));
   const type = formData.get("type");
   const query = formData.get("query");
-  console.log("entered");
+
   if (query === "" || !query) {
     notify("Enter something to search", "error");
     return;
   }
 
-  window.location.href = `/search.html?type=${type || "multi"}&query=${query}`;
+  window.location.href = `/search.html?type=${
+    type || "multi"
+  }&query=${query}&page=1`;
 }
 
 export { showLoader, removeLoader, options, getGenres, search, notify };
