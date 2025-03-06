@@ -87,7 +87,6 @@ a {
   margin-top: 3rem;
 }
 
-
 #unit {
   width: 100%;
   height: fit-content;
@@ -97,7 +96,11 @@ a {
   justify-content: space-between;
 }
 #footer {
-  padding: 2rem;
+  padding: 1rem;
+  text-align: center;
+}
+.love {
+  color: red !important;
 }
 #cards {
   width: 100%;

@@ -4,6 +4,7 @@ import {
   options,
   getGenres,
   search as callSearch,
+  notify,
 } from "./utils.js";
 
 async function constructCards(results, what, query) {
@@ -64,7 +65,7 @@ async function search() {
   const query = searchParams.get("query");
   const type = searchParams.get("type");
 
-  const url = `https://api.themoviedb.org/3/search/${type}?query=${query}&language=en-US `;
+  const url = `https://api.themoviedb.org/3/search/${type}?query=${query}&language=en-US&adult=true`;
   console.log(url);
   if (type != "multi")
     document
@@ -73,13 +74,22 @@ async function search() {
 
   await fetch(url, options)
     .then((data) => data.json())
-    .then((data) =>
-      constructCards(data.results, type == "multi" ? "all" : type, query)
-    );
+    .then((searchResult) => {
+      if (searchResult.results.length === 0) {
+        removeLoader();
+        throw new Error("Nothing found");
+      } else
+        constructCards(
+          searchResult.results,
+          type == "multi" ? "all" : type,
+          query
+        );
+    })
+    .catch((e) => notify(e.message, "error"));
 }
 window.addEventListener("DOMContentLoaded", () => {
-  document.querySelector("form").addEventListener("submit", search);
-  document.querySelector(".submit").addEventListener("click", search);
+  document.querySelector("form").addEventListener("submit", callSearch);
+  document.querySelector(".submit").addEventListener("click", callSearch);
 });
 
 window.addEventListener("DOMContentLoaded", () => {

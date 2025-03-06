@@ -11,7 +11,7 @@ async function setDetails(data) {
           <div id="gradient"></div>
         </div>
         <div id="info-body">
-          <div id="poster" style = "background-image:url(https:image.tmdb.org/t/p/w1920${
+          <div id="poster" style = "background-image:url(https:image.tmdb.org/t/p/w500${
             data.poster_path
           })"></div>
           <div id="about">
@@ -52,12 +52,12 @@ async function setDetails(data) {
               <div class="info">
                 <b>Production</b> : ${data.production_companies
                   .map((company) => company.name)
-                  .join(" , ")}
+                  .join(" • ")}
               </div>
               <div class="info">
                 <b>Genres</b> : ${data.genres
                   .map((genre) => genre.name)
-                  .join(" , ")}
+                  .join(" • ")}
               </div>
             </div>
             <div id="overview">
@@ -78,7 +78,7 @@ async function setDetails(data) {
         </div>
 
       <div id="info-body">
-        <div id="poster" style = "background-image:url(https:image.tmdb.org/t/p/w1920${
+        <div id="poster" style = "background-image:url(https:image.tmdb.org/t/p/w500${
           data.poster_path
         })"></div>
         <div id="about">
@@ -118,16 +118,17 @@ async function setDetails(data) {
               <div class="info">
                 <b>Production</b> : ${data.production_companies
                   .map((company) => company.name)
-                  .join(" , ")}
+                  .join(" • ")}
               </div>
               <div class="info">
                 <b>Genres</b> : ${data.genres
                   .map((genre) => genre.name)
-                  .join(" , ")}
+                  .join(" • ")}
               </div>
             <div class="info">
-              <b>Genres</b> : Comedy , Romance , Fiction , Action and
-              Adventure
+               <b>Genres</b> : ${data.genres
+                 .map((genre) => genre.name)
+                 .join(" • ")}
             </div>
           </div>
           <div id="overview">
