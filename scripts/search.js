@@ -57,6 +57,7 @@ async function constructCards(results, what, query, pageCount, currentPage) {
 
     document.querySelector("#cards").appendChild(card);
   });
+  // pagination from here
   const pages = document.createElement("div");
   pages.setAttribute("id", "pages");
   const pageArr = new Array(parseInt(pageCount)).fill(0).slice(0, 10);

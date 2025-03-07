@@ -4,7 +4,7 @@ import {
   options,
   getGenres,
   search,
-} from "./utils.js";
+} from "./scripts/utils.js";
 
 async function getPopular(what) {
   const url = {
