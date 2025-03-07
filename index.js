@@ -69,7 +69,7 @@ async function getPopular(what) {
 }
 const location = window.location.pathname;
 const what =
-  location === "/index.html"
+  location === "/index.html" || location === "/"
     ? "all"
     : location === "/movies.html"
     ? "movie"
