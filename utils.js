@@ -11,7 +11,6 @@ const showLoader = () => {
   console.log("called");
   const loader = document.createElement("div");
   loader.setAttribute("class", "loader");
-  loader.innerText = "Loading";
   document.body.appendChild(loader);
 };
 
@@ -31,4 +30,30 @@ async function getGenres(ids, what) {
   return ids.map((id) => genres.filter((genre) => genre.id === id)[0]["name"]);
 }
 
-export { showLoader, removeLoader, options, getGenres };
+function notify(message, type) {
+  const alertElem = document.createElement("div");
+  alertElem.setAttribute("class", `alert ${type}`);
+  alertElem.textContent = message;
+  document
+    .querySelector("body")
+    .insertBefore(alertElem, document.querySelector("#body"));
+  setTimeout(() => alertElem.remove(), 2000);
+}
+
+function search(e) {
+  e.preventDefault();
+  const formData = new FormData(document.querySelector("form"));
+  const type = formData.get("type");
+  const query = formData.get("query");
+
+  if (query === "" || !query) {
+    notify("Enter something to search", "error");
+    return;
+  }
+
+  window.location.href = `/search.html?type=${
+    type || "multi"
+  }&query=${query}&page=1`;
+}
+
+export { showLoader, removeLoader, options, getGenres, search, notify };

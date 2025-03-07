@@ -1,27 +1,30 @@
-import { showLoader, removeLoader, options, getGenres } from "./utils.js";
+import {
+  showLoader,
+  removeLoader,
+  options,
+  getGenres,
+  search as callSearch,
+  notify,
+} from "./utils.js";
 
-window.addEventListener("DOMContentLoaded", () =>
-  document.querySelector(".submit").addEventListener("click", () => {
-    const formData = new FormData(document.querySelector("form"));
-    const type = formData.get("type");
-    const query = formData.get("query");
-    window.location.href = `/search.html?type=${type}&query=${query}`;
-  })
-);
-
-async function constructCards(results, what, query) {
+async function constructCards(results, what, query, pageCount, currentPage) {
   console.log(results);
   results.forEach(async (item) => {
-    const card = document.createElement("div");
+    if (item.media_type === "person") return;
 
+    const card = document.createElement("div");
     card.className = "card";
+    card.addEventListener("click", (e) => {
+      window.location.href = `/${
+        what === "all" ? item.media_type : what
+      }-detail.html?id=${item.id}`;
+    });
+
     let genrelimit = 25;
     const genres = await getGenres(
       item.genre_ids,
       what === "all" ? item.media_type : what
     ).then((data) => data);
-
-    if (item.media_type === "person") return;
 
     card.innerHTML = `
     <div id="img" style = "background-image:url('https://image.tmdb.org/t/p/w500/${
@@ -39,7 +42,7 @@ async function constructCards(results, what, query) {
        <div id="lang">Language: ${item.original_language.toUpperCase()}</div>
 
        <div id="release">Release: ${
-         item.release_date || item.first_air_date
+         item.release_date || item.first_air_date || "Unknown"
        }</div>
        <div id="genres">
          ${genres
@@ -54,23 +57,64 @@ async function constructCards(results, what, query) {
 
     document.querySelector("#cards").appendChild(card);
   });
+  const pages = document.createElement("div");
+  pages.setAttribute("id", "pages");
+  const pageArr = new Array(parseInt(pageCount)).fill(0).slice(0, 10);
+
+  pageArr.map((page, index) => {
+    const pageel = document.createElement("div");
+    if (currentPage == index + 1) {
+      pageel.setAttribute("id", "active-page");
+    }
+    pageel.innerText = index + 1;
+    pageel.addEventListener("click", () => {
+      window.location.href = `/search.html?type=${
+        what === "all" ? "multi" : what
+      }&query=${query}&page=${index + 1}`;
+    }); //from here
+    pages.appendChild(pageel);
+  });
+  document
+    .querySelector("#unit")
+    .insertBefore(pages, document.querySelector("#footer"));
+
   removeLoader();
 }
 
 async function search() {
   const searchParams = new URLSearchParams(window.location.search);
   const query = searchParams.get("query");
-  const type =
-    searchParams.get("type") != "null" ? searchParams.get("type") : null;
+  const type = searchParams.get("type");
+  const currentPage = searchParams.get("page") || "1";
 
-  const url = `https://api.themoviedb.org/3/search/${
-    type || "multi"
-  }?query=${query}&language=en-US `;
+  const url = `https://api.themoviedb.org/3/search/${type}?query=${query}&language=en-US&page=${currentPage}`;
   console.log(url);
+  if (type != "multi")
+    document
+      .querySelector("form")
+      .querySelector(`input[value=${type}]`).checked = true;
+
   await fetch(url, options)
     .then((data) => data.json())
-    .then((data) => constructCards(data.results, type || "all", query));
+    .then((searchResult) => {
+      if (searchResult.results.length === 0) {
+        removeLoader();
+        throw new Error("Nothing found");
+      } else
+        constructCards(
+          searchResult.results,
+          type == "multi" ? "all" : type,
+          query,
+          searchResult.total_pages,
+          currentPage
+        );
+    })
+    .catch((e) => notify(e.message, "error"));
 }
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelector("form").addEventListener("submit", callSearch);
+  document.querySelector(".submit").addEventListener("click", callSearch);
+});
 
 window.addEventListener("DOMContentLoaded", () => {
   // start the search process right after the dom has been loaded but not on pages other than search.html
