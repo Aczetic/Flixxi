@@ -11,7 +11,7 @@ async function setDetails(data, type) {
           <div id="gradient"></div>
         </div>
         <div id="info-body">
-          <div id="poster" style = "background-image:url(https:image.tmdb.org/t/p/w500${
+          <div id="poster" style = "background-image:url(https://image.tmdb.org/t/p/w500${
             data.poster_path
           })"></div>
           <div id="about">
@@ -107,7 +107,7 @@ async function setDetails(data, type) {
         </div>
 
       <div id="info-body">
-        <div id="poster" style = "background-image:url(https:image.tmdb.org/t/p/w500${
+        <div id="poster" style = "background-image:url(https://image.tmdb.org/t/p/w500${
           data.poster_path
         })"></div>
         <div id="about">
