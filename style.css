@@ -94,6 +94,7 @@ a {
   flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 #pages {
@@ -122,9 +123,9 @@ a {
   color: red !important;
 }
 #cards {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   justify-content: center;
   gap: 0.8rem;
 }
@@ -374,7 +375,7 @@ a {
   #title {
     padding: 0.3rem 0;
     font-size: 1rem;
-    line-height: 0.9rem;
+    line-height: 1.9rem;
     font-weight: 500;
   }
   #rating {
@@ -421,5 +422,25 @@ a {
   .success {
     display: flex;
     background-color: green;
+  }
+}
+
+@media (max-width: 1400px) {
+  #cards {
+    width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 1150px) {
+  #cards {
+    width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) !important;
+    justify-content: center;
+    gap: 0.5rem;
   }
 }
