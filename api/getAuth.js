@@ -1,3 +1,3 @@
 export default async function (req, res) {
-  res.send(process.env.AUTHORIZATION);
+  res.status(200).json({ auth: process.env.AUTHORIZATION });
 }
