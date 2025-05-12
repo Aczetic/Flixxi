@@ -1,3 +1,3 @@
-export default handler = async (req, res) => {
+export default async function (req, res) {
   res.send(process.env.AUTHORIZATION);
-};
+}
