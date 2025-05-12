@@ -1,7 +1,7 @@
 import {
   showLoader,
   removeLoader,
-  options,
+  getOptions,
   getGenres,
   search as callSearch,
   notify,
@@ -95,7 +95,7 @@ async function search() {
       .querySelector("form")
       .querySelector(`input[value=${type}]`).checked = true;
 
-  await fetch(url, options)
+  await fetch(url, await getOptions())
     .then((data) => data.json())
     .then((searchResult) => {
       if (searchResult.results.length === 0) {

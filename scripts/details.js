@@ -1,4 +1,4 @@
-import { options, removeLoader } from "./utils.js";
+import { getOptions, removeLoader } from "./utils.js";
 
 async function setDetails(data, type) {
   const detailsBody = document.createElement("div");
@@ -205,7 +205,7 @@ async function getDetails() {
   console.log(id, type);
   const detail = await fetch(
     `https://api.themoviedb.org/3/${type}/${id}?language=en-US`,
-    options
+    await getOptions()
   )
     .then((data) => data.json())
     .then((data) => setDetails(data, type))

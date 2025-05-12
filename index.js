@@ -1,7 +1,7 @@
 import {
   showLoader,
   removeLoader,
-  options,
+  getOptions,
   getGenres,
   search,
 } from "./scripts/utils.js";
@@ -14,7 +14,8 @@ async function getPopular(what) {
   };
 
   // showLoader();
-  await fetch(url[what], options)
+  console.log(await getOptions());
+  await fetch(url[what], await getOptions())
     .then((data) => data.json())
     .then((list) =>
       list.results.forEach(async (item, index) => {

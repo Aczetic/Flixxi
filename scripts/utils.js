@@ -1,10 +1,20 @@
-import AUTHORIZATION from "./secrets.js";
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: AUTHORIZATION,
-  },
+const getOptions = async () => {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: await getAuth(),
+    },
+  };
+  return options;
+};
+
+const getAuth = async () => {
+  const auth = await fetch("/api/getAuth")
+    .then((res) => res.json())
+    .then((data) => data);
+
+  return auth;
 };
 
 const showLoader = () => {
@@ -24,7 +34,7 @@ const removeLoader = () => {
 async function getGenres(ids, what) {
   if (what === "person" || !ids) return;
   const url = `https://api.themoviedb.org/3/genre/${what}/list?language=en`;
-  const { genres } = await fetch(url, options)
+  const { genres } = await fetch(url, await getOptions())
     .then((data) => data.json())
     .then((data) => data);
   return ids.map((id) => genres.filter((genre) => genre.id === id)[0]["name"]);
@@ -56,4 +66,4 @@ function search(e) {
   }&query=${query}&page=1`;
 }
 
-export { showLoader, removeLoader, options, getGenres, search, notify };
+export { showLoader, removeLoader, getOptions, getGenres, search, notify };
