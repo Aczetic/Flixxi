@@ -11,7 +11,6 @@ const getOptions = async () => {
 
 const getAuth = async () => {
   const auth = await fetch("/api/getAuth")
-    .then((res) => res.json())
     .then((data) => data);
 
   return auth;
