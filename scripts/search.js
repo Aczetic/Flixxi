@@ -89,7 +89,7 @@ async function search() {
   const currentPage = searchParams.get("page") || "1";
 
   const url = `https://api.themoviedb.org/3/search/${type}?query=${query}&language=en-US&page=${currentPage}`;
-  console.log(url);
+
   if (type != "multi")
     document
       .querySelector("form")

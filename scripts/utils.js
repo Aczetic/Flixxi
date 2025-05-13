@@ -8,17 +8,17 @@ const getOptions = async () => {
   };
   return options;
 };
-
+  
 const getAuth = async () => {
   const auth = await fetch("/api/getAuth")
     .then((res) => res.json())
     .then((data) => data.auth);
-  console.log(typeof auth);
+
   return auth;
 };
 
 const showLoader = () => {
-  console.log("called");
+
   const loader = document.createElement("div");
   loader.setAttribute("class", "loader");
   document.body.appendChild(loader);
